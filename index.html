@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>CesiBet Einsatz Rechner</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }.card {
+      background: white;
+      padding: 20px;
+      border-radius: 16px;
+      width: 100%;
+      max-width: 360px;
+    }
+    h2 {
+      text-align: center;
+    }
+    input {
+      width: 100%;
+      padding: 12px;
+      font-size: 18px;
+      margin-bottom: 16px;
+    }.row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    .risk {
+      margin-top: 12px;
+      padding-top: 10px;
+      border-top: 1px solid #ccc;
+      font-weight: bold;
+      text-align: center;
+    }
+  </style>
+</head><body>
+
+<div class="card">
+  <h2>CesiBet Einsatz Rechner</h2>
+
+  <input type="number" id="bankroll" value="1000" placeholder="Bankroll €" oninput="rechnen()">
+
+  <div class="row">
+    <span>1. Drittel (0,5 %)</span>
+    <span id="e1">5.00 €</span>
+  </div>
+  <div class="row">
+    <span>2. Drittel (2,25 %)</span>
+    <span id="e2">22.50 €</span>
+  </div>
+  <div class="row">
+    <span>3. Drittel (7,25 %)</span>
+    <span id="e3">72.50 €</span></div>
+
+  <div class="risk">
+    Max. Risiko: <span id="risk">100.00 €</span>
+  </div>
+</div>
+
+<script>
+function rechnen() {
+  const b = Number(document.getElementById('bankroll').value) || 0;
+  const e1 = b * 0.005;
+  const e2 = b * 0.0225;
+  const e3 = b * 0.0725;
+
+  document.getElementById('e1').innerText = e1.toFixed(2) + ' €';
+  document.getElementById('e2').innerText = e2.toFixed(2) + ' €';
+  document.getElementById('e3').innerText = e3.toFixed(2) + ' €';
+  document.getElementById('risk').innerText = (e1 + e2 + e3).toFixed(2) + ' €';
+}
+
+rechnen();
+</script>
+
+</body>
+</html>
